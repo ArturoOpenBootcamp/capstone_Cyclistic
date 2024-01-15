@@ -1,0 +1,12 @@
+ggplot(totalaverage, aes(x = day_of_week, y = averagebytrip, fill = member_casual)) +
+  geom_bar(stat = "identity", position = "dodge", color = "black") +
+  geom_text(aes(label = round(averagebytrip, 2)), position = position_dodge(width = 0.9), vjust = -0.5) +
+  labs(title = "Average Trip Duration for Members by Day of Week",
+       x = NULL,
+       y = "Average Trip Duration (minutes)",
+       fill= NULL)+
+  theme(axis.text = element_text(size = 9), axis.text.x = element_text(angle=45))
+
+count_by_day <- June_2023 %>%
+  group_by(day_of_week, member_casual) %>%
+  summarise(total = n())

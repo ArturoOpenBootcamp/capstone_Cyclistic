@@ -1,0 +1,41 @@
+title: "Cyclistic Bike-share Project"
+author: "Arturo Bravo"
+date: "2023-12-22"
+output:
+  html_document: default
+  
+
+---
+
+```{r setup, echo=TRUE, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(ggplot2)
+library(scales)
+library(tinytex)
+
+```
+## Introduction
+
+Cyclistic is a bike-share program operating in Chicago, providing diverse bicycles and docking stations. This project aims to explore distinct usage patterns between annual members and casual riders.
+
+ <img src="https://cdn.pixabay.com/photo/2014/06/25/15/50/bike-377249_1280.jpg" alt= "Cyclistic" width="380" height ="330">
+ 
+
+The program is operating in Chicago with over 5,800 bicycles and 600 docking stations, offering three types of bikes: **Docked, Electrical, and Classic.**.
+
+The marketing goal is to convert casual riders into annual riders. In order to achieve this, the marketing team needs a better understanding of how annual members and casual riders differ. 
+
+## User Demographics
+Cyclistic ridership comprises members and casual users. In the second semester of 2023, 60% are members, while casual users show a slight increase in summer.
+```{r, results='asis'}
+ggplot(totalaverage, aes(x = day_of_week, y = averagebytrip, fill = member_casual)) +
+  geom_bar(stat = "identity", position = "dodge", color = "black") +
+  geom_text(aes(label = round(averagebytrip, 2)), position = position_dodge(width = 0.9), vjust = -0.5) +
+  labs(title = "Average Trip Duration for Members by Day of Week",
+       x = NULL,
+       y = "Average Trip Duration (minutes)",
+       fill= NULL)+
+  theme(axis.text = element_text(size = 9), axis.text.x = element_text(angle=45))
+```
+
